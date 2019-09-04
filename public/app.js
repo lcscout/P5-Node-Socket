@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 let x
 let y
 
