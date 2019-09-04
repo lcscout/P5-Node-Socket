@@ -32,7 +32,7 @@ function draw() {
     if (backValue === false) {
         background(200)
     }
-    // console.log('Sending ' + x + ',' + y)
+    console.log('Sending ' + x + ',' + y)
     let data = {
         x,
         y

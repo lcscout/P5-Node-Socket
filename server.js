@@ -18,7 +18,7 @@ function newConnection(socket) {
 
     function movePlayer(data) {
         socket.broadcast.emit('move', data)
-        // console.log(data)
+        console.log(data)
     }
 
     function conIndeed(conVal) {
