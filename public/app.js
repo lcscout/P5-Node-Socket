@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 let x
 let y
 
@@ -9,7 +7,7 @@ function setup() {
     x = 50
     y = 50
 
-    socket = io.connect(process.env.NODE_ENV === 'production' ? 'https://p5-node-socket.herokuapp.com' : 'http://localhost:3000')
+    socket = io.connect('https://p5-node-socket.herokuapp.com')
     // socket.on('clear', setTimeout(() => {
     //     // clear()
     // }, 500))
