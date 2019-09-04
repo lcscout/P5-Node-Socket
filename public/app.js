@@ -1,5 +1,6 @@
 let x
 let y
+let backValue = false
 
 function setup() {
     createCanvas(400, 400)
@@ -7,21 +8,31 @@ function setup() {
     x = 50
     y = 50
 
-    socket = io.connect('https://p5-node-socket.herokuapp.com')
-    // socket.on('clear', setTimeout(() => {
-    //     // clear()
-    // }, 500))
+    socket = io.connect('https://p5-node-socket.herokuapp.com/')
+
+    socket.on('con', isThereACon)
     socket.on('move', newPlayer)
 }
 
+function isThereACon(conVal) {
+    backValue = conVal.true
+}
+
 function newPlayer(data) {
-    clear()
+    let conVal = { 
+        true: true
+    } 
+    socket.emit('connected', conVal)
+    background(200)
     fill(100)
     rect(data.x, data.y, 25, 25)
 }
 
 function draw() {
-    console.log('Sending ' + x + ',' + y)
+    if (backValue === false) {
+        background(200)
+    }
+    // console.log('Sending ' + x + ',' + y)
     let data = {
         x,
         y
@@ -43,7 +54,7 @@ function draw() {
     }
 
     whenKey()
-    
+
     rect(x, y, 25, 25)
 }
 
@@ -69,7 +80,6 @@ function whenKey() {
     } else if (keyIsDown(DOWN_ARROW)) {
         y += 5
     }
-
 }
 
 // let x = 50
@@ -112,7 +122,7 @@ function whenKey() {
 //     } else if (y <= 0) {
 //         y = 0
 //     }
-    
+
 // }
 
 // function keyPressed() {

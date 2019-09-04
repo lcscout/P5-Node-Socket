@@ -14,10 +14,15 @@ io.on('connection', newConnection)
 function newConnection(socket) {
     console.log('New connection: ' + socket.id)
     socket.on('moveP', movePlayer)
+    socket.on('connected', conIndeed)
 
     function movePlayer(data) {
         socket.broadcast.emit('move', data)
-        console.log(data)
+        // console.log(data)
+    }
+
+    function conIndeed(conVal) {
+        socket.broadcast.emit('con', conVal)
     }
 }
 
