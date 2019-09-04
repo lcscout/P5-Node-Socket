@@ -7,7 +7,7 @@ function setup() {
     x = 50
     y = 50
 
-    socket = io.connect('http://localhost:3000')
+    socket = io.connect(process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://p5-node-socket.herokuapp.com/')
     // socket.on('clear', setTimeout(() => {
     //     // clear()
     // }, 500))
